@@ -5,22 +5,22 @@ import 'package:ferry_easy_admin/users/users.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({super.key});
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
         routes: {
-          '/users': (context) => Users(),
-          '/ferries': (context) => Ferries(),
-          '/announcement': (context) => Announcement(),
+          '/users': (context) => const Users(),
+          '/ferries': (context) => const Ferries(),
+          '/announcement': (context) => const Announcement(),
         },
         debugShowCheckedModeBanner: false,
         title: 'admin',
-        home: AdminDashboard());
+        home: const AdminDashboard());
   }
 }

@@ -42,14 +42,14 @@ class _ConfirmationCardState extends State<ConfirmationCard> {
                   size: 80,
                   color: kcPrimaryColor,
                 ),
-                SizedBox(height: 40),
+                const SizedBox(height: 40),
                 Text(widget.text,
                     style: const TextStyle(
                         fontFamily: 'Inter',
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
                         color: kcDarkGray)),
-                SizedBox(height: 40),
+                const SizedBox(height: 40),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

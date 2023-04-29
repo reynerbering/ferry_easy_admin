@@ -7,7 +7,7 @@ class WalletCard extends StatelessWidget {
   final int amount;
 
   const WalletCard({
-    Key? key,
+    super.key,
     required this.image,
     required this.name,
     required this.amount,
@@ -39,29 +39,29 @@ class WalletCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Current Balance',
+                  const Text('Current Balance',
                       style: TextStyle(
                           fontFamily: 'Inter',
                           fontSize: 15,
                           fontWeight: FontWeight.w400,
                           color: kcDarkGray)),
-                  SizedBox(height: 25),
+                  const SizedBox(height: 25),
                   Text('₱$amount',
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontFamily: 'Inter',
                           fontSize: 80,
                           fontWeight: FontWeight.w500,
                           color: kcPrimaryColor)),
-                  SizedBox(height: 35),
-                  Text('Name',
+                  const SizedBox(height: 35),
+                  const Text('Name',
                       style: TextStyle(
                           fontFamily: 'Inter',
                           fontSize: 15,
                           fontWeight: FontWeight.w400,
                           color: kcDarkGray)),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   Text(name,
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontFamily: 'Inter',
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
@@ -70,8 +70,8 @@ class WalletCard extends StatelessWidget {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(40),
+          const Padding(
+            padding: EdgeInsets.all(40),
             child: CircleAvatar(
               radius: 50,
               backgroundImage: AssetImage('assets/images/titikmankid.jpg'),

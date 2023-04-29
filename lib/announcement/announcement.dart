@@ -7,7 +7,9 @@ import 'package:flutter/material.dart';
 import '../constants.dart/colors.dart';
 
 class Announcement extends StatelessWidget {
-  const Announcement({Key? key});
+  const Announcement({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -18,9 +20,9 @@ class Announcement extends StatelessWidget {
           centerTitle: true,
           backgroundColor: kcPrimaryColor,
         ),
-        drawer: AdminDrawer(),
+        drawer: const AdminDrawer(),
         body: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage('assets/images/welcome-screen-waves.png'),
               fit: BoxFit.fitWidth,
@@ -37,9 +39,9 @@ class Announcement extends StatelessWidget {
                 width: 958.0,
                 height: 750.0,
                 child: Column(children: [
-                  SizedBox(height: 30),
+                  const SizedBox(height: 30),
                   Row(
-                    children: [
+                    children: const [
                       SizedBox(width: 90),
                       Text('Title',
                           style: TextStyle(
@@ -64,55 +66,55 @@ class Announcement extends StatelessWidget {
                       SizedBox(width: 70),
                     ],
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   AnnouncementInfo(
                       title: 'Bagyong Odette Trip Advisory',
                       datePublished: 'December 16 2000',
                       status: 'Published',
                       onTap: () {}),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   AnnouncementInfo(
                       title: 'Fare Hike Advisory',
                       datePublished: 'December 16 2000',
                       status: 'Published',
                       onTap: () {}),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   AnnouncementInfo(
                       title: 'No Operations on City Fiesta',
                       datePublished: 'December 16 2000',
                       status: 'Published',
                       onTap: () {}),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   AnnouncementInfo(
                       title: 'Bagyong Odette',
                       datePublished: 'December 16 2000',
                       status: 'Published',
                       onTap: () {}),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   AnnouncementInfo(
                       title: 'Bagyong Odette',
                       datePublished: 'December 16 2000',
                       status: 'Published',
                       onTap: () {}),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   AnnouncementInfo(
                       title: 'Bagyong Odette',
                       datePublished: 'December 16 2000',
                       status: 'Published',
                       onTap: () {}),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   AnnouncementInfo(
                       title: 'Bagyong Odette',
                       datePublished: 'December 16 2000',
                       status: 'Published',
                       onTap: () {}),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   AnnouncementInfo(
                       title: 'Bagyong Odette',
                       datePublished: 'December 16 2000',
                       status: 'Published',
                       onTap: () {}),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   SizedBox(
                     height: 50,
                     width: 850,

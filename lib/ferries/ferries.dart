@@ -15,9 +15,9 @@ class Ferries extends StatelessWidget {
           centerTitle: true,
           backgroundColor: kcPrimaryColor,
         ),
-        drawer: AdminDrawer(),
+        drawer: const AdminDrawer(),
         body: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage('assets/images/welcome-screen-waves.png'),
               fit: BoxFit.fitWidth,
@@ -27,7 +27,7 @@ class Ferries extends StatelessWidget {
           child: Center(
             child: Container(
               alignment: Alignment.topCenter,
-              margin: EdgeInsets.only(top: 80.0),
+              margin: const EdgeInsets.only(top: 80.0),
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
@@ -41,12 +41,12 @@ class Ferries extends StatelessWidget {
                                 builder: (context) => const FerryHistory()),
                           );
                         }),
-                    SizedBox(width: 50),
+                    const SizedBox(width: 50),
                     FerryCard(
                         title: 'MV CARMEN 1',
                         icon: Icons.directions_ferry_rounded,
                         onTap: () {}),
-                    SizedBox(width: 50),
+                    const SizedBox(width: 50),
                     FerryCard(
                         title: 'MV TOMMY',
                         icon: Icons.directions_ferry_rounded,

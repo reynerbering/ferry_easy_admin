@@ -22,7 +22,7 @@ class FerryHistory extends StatelessWidget {
       ),
       drawer: const AdminDrawer(),
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage('assets/images/welcome-screen-waves.png'),
             fit: BoxFit.fitWidth,

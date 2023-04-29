@@ -31,7 +31,7 @@ class ColumnTitle extends StatelessWidget {
                 child: Container(
                     alignment: Alignment.center,
                     child: Text(title1,
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontFamily: 'Inter',
                             fontSize: 14,
                             color: kcPrimaryColor,
@@ -41,7 +41,7 @@ class ColumnTitle extends StatelessWidget {
                 child: Container(
                     alignment: Alignment.center,
                     child: Text(title2,
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontFamily: 'Inter',
                             fontSize: 14,
                             color: kcPrimaryColor,
@@ -51,7 +51,7 @@ class ColumnTitle extends StatelessWidget {
                 child: Container(
                   alignment: Alignment.center,
                   child: Text(title3,
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontFamily: 'Inter',
                           fontSize: 14,
                           color: kcPrimaryColor,
@@ -62,7 +62,7 @@ class ColumnTitle extends StatelessWidget {
                 child: Container(
                     alignment: Alignment.center,
                     child: Text(title4,
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontFamily: 'Inter',
                             fontSize: 14,
                             color: kcPrimaryColor,

@@ -66,10 +66,10 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
               const SizedBox(height: 250.0),
-              Container(
+              const SizedBox(
                 width: 700,
                 height: 49,
-                child: const TextField(
+                child: TextField(
                   decoration: InputDecoration(
                     prefixIcon: Icon(Icons.person), // User icon
                     hintText: 'Username', // Placeholder text
@@ -79,10 +79,10 @@ class _LoginPageState extends State<LoginPage> {
               const SizedBox(height: 20.0),
               Column(
                 children: [
-                  Container(
+                  const SizedBox(
                     width: 700,
                     height: 49,
-                    child: const TextField(
+                    child: TextField(
                       obscureText: true, // Password field
                       decoration: InputDecoration(
                           prefixIcon: Icon(Icons.lock), // Lock icon

@@ -45,21 +45,21 @@ class _DialogCardState extends State<DialogCard> {
                   size: 80,
                   color: kcPrimaryColor,
                 ),
-                SizedBox(height: 40),
+                const SizedBox(height: 40),
                 Text(widget.text,
-                    style: TextStyle(
+                    style: const TextStyle(
                         fontFamily: 'Inter',
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
                         color: kcDarkGray)),
-                SizedBox(height: 40),
+                const SizedBox(height: 40),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     MainButton(
                         onPressed: widget.onButtonPressed1,
                         buttonText: widget.buttonText1),
-                    SizedBox(width: 40),
+                    const SizedBox(width: 40),
                     MainButton(
                       onPressed: widget.onButtonPressed2,
                       buttonText: widget.buttonText2,

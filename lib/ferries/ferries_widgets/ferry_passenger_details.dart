@@ -21,7 +21,7 @@ class FerryPassengerDetails extends StatefulWidget {
 }
 
 class _FerryHistoryDetailsState extends State<FerryPassengerDetails> {
-  bool _isHovered = false;
+  final bool _isHovered = false;
 
   @override
   Widget build(BuildContext context) {

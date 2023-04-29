@@ -64,7 +64,8 @@ class AdminDrawer extends StatelessWidget {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => Announcement()),
+                      MaterialPageRoute(
+                          builder: (context) => const Announcement()),
                     );
                   },
                 ),

@@ -7,7 +7,7 @@ import '../constants.dart/colors.dart';
 import 'ferries_widgets/ferry_name.dart';
 
 class FerryPassengerHistory extends StatelessWidget {
-  const FerryPassengerHistory({Key? key});
+  const FerryPassengerHistory({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class FerryPassengerHistory extends StatelessWidget {
         ),
         drawer: const AdminDrawer(),
         body: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage('assets/images/welcome-screen-waves.png'),
               fit: BoxFit.fitWidth,
@@ -45,9 +45,9 @@ class FerryPassengerHistory extends StatelessWidget {
                               companyName: 'Cokaliong Lite Ferries'),
                         )
                       ]),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-                        child: const FerryHistoryOutline(
+                      const Padding(
+                        padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                        child: FerryHistoryOutline(
                             date: '12/14/2000',
                             route: 'LAPULAPU-PIER3',
                             departure: '23:11:00',

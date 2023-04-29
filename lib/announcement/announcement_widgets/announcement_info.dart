@@ -10,7 +10,8 @@ class AnnouncementInfo extends StatefulWidget {
   final String status;
   final VoidCallback? onTap;
 
-  AnnouncementInfo({
+  const AnnouncementInfo({
+    super.key,
     required this.title,
     required this.datePublished,
     required this.status,
@@ -62,13 +63,13 @@ class _AnnouncementInfoState extends State<AnnouncementInfo> {
                 color: Colors.grey.withOpacity(0.2),
                 spreadRadius: 1,
                 blurRadius: 1,
-                offset: Offset(0, 2),
+                offset: const Offset(0, 2),
               ),
             ],
           ),
           child: Row(
             children: [
-              SizedBox(
+              const SizedBox(
                 width: 20,
               ),
               Expanded(
@@ -126,7 +127,7 @@ class _AnnouncementInfoState extends State<AnnouncementInfo> {
                       Icon(Icons.border_color_rounded, color: _getTextColor()),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 20,
               ),
               InkWell(
@@ -170,7 +171,7 @@ class _AnnouncementInfoState extends State<AnnouncementInfo> {
                   child: Icon(Icons.delete_rounded, color: _getTextColor()),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 20,
               ),
             ],

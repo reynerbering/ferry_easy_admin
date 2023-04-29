@@ -15,9 +15,9 @@ class Users extends StatelessWidget {
         centerTitle: true,
         backgroundColor: kcPrimaryColor,
       ),
-      drawer: AdminDrawer(),
+      drawer: const AdminDrawer(),
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage('assets/images/welcome-screen-waves.png'),
             fit: BoxFit.fitWidth,
@@ -48,8 +48,8 @@ class Users extends StatelessWidget {
                             ),
                           ],
                         ),
-                        child: TextField(
-                          decoration: const InputDecoration(
+                        child: const TextField(
+                          decoration: InputDecoration(
                             contentPadding: EdgeInsets.all(16),
                             hintText: 'Search User',
                             border: InputBorder.none,
@@ -66,7 +66,7 @@ class Users extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => UserProfile()),
+                                builder: (context) => const UserProfile()),
                           );
                         },
                         style: ElevatedButton.styleFrom(

@@ -7,7 +7,8 @@ class FerryCard extends StatefulWidget {
   final IconData icon;
   final VoidCallback? onTap;
 
-  const FerryCard({required this.title, required this.icon, this.onTap});
+  const FerryCard(
+      {super.key, required this.title, required this.icon, this.onTap});
 
   @override
   _FerryCardState createState() => _FerryCardState();
@@ -50,9 +51,9 @@ class _FerryCardState extends State<FerryCard> {
                   size: 113,
                   color: kcPrimaryColor,
                 ),
-                SizedBox(width: 20),
+                const SizedBox(width: 20),
                 Text(widget.title,
-                    style: TextStyle(
+                    style: const TextStyle(
                         fontFamily: 'Inter',
                         fontSize: 24,
                         fontWeight: FontWeight.bold,

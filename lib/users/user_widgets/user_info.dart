@@ -6,7 +6,7 @@ class UserInfo extends StatelessWidget {
   final String title;
   final IconData icon;
 
-  UserInfo({
+  const UserInfo({
     Key? key, // Use Key? instead of super.key
     required this.title,
     required this.icon,
@@ -24,7 +24,7 @@ class UserInfo extends StatelessWidget {
                   MainAxisAlignment.start, // Align children to start of row
               children: [
                 Icon(icon, size: 24, color: kcDarkGray),
-                SizedBox(width: 20),
+                const SizedBox(width: 20),
                 Text(title,
                     style: const TextStyle(
                       fontFamily: 'Inter',

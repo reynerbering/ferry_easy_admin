@@ -19,7 +19,7 @@ class FerryName extends StatelessWidget {
       children: [
         Text(
           ferryName,
-          style: TextStyle(
+          style: const TextStyle(
             fontFamily: 'Inter',
             fontSize: 36,
             color: kcPrimaryColor,
@@ -28,7 +28,7 @@ class FerryName extends StatelessWidget {
         ),
         Text(
           companyName,
-          style: TextStyle(
+          style: const TextStyle(
             fontFamily: 'Inter',
             fontSize: 12,
             fontWeight: FontWeight.w500,

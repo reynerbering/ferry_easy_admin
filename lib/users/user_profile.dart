@@ -8,7 +8,7 @@ import 'package:ferry_easy_admin/widgets/dialog_card.dart';
 import 'package:flutter/material.dart';
 
 class UserProfile extends StatelessWidget {
-  const UserProfile({Key? key});
+  const UserProfile({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,9 +18,9 @@ class UserProfile extends StatelessWidget {
           centerTitle: true,
           backgroundColor: kcPrimaryColor,
         ),
-        drawer: AdminDrawer(), // Add AdminDrawer as a drawer
+        drawer: const AdminDrawer(), // Add AdminDrawer as a drawer
         body: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage('assets/images/welcome-screen-waves.png'),
               fit: BoxFit.fitWidth,
@@ -47,7 +47,7 @@ class UserProfile extends StatelessWidget {
                     Expanded(
                       child: Container(
                         margin: const EdgeInsets.only(top: 50),
-                        child: Align(
+                        child: const Align(
                           alignment: Alignment.topCenter,
                           child: CircleAvatar(
                             radius: 90,
@@ -60,10 +60,10 @@ class UserProfile extends StatelessWidget {
                     Expanded(
                       child: Column(
                         children: [
-                          SizedBox(height: 40),
+                          const SizedBox(height: 40),
                           Container(
                             alignment: Alignment.topLeft,
-                            child: Text(
+                            child: const Text(
                               'Fabian Miguel Canizares',
                               style: TextStyle(
                                 fontFamily: 'Inter',
@@ -73,29 +73,29 @@ class UserProfile extends StatelessWidget {
                               ),
                             ),
                           ),
-                          SizedBox(height: 25),
-                          UserInfo(
+                          const SizedBox(height: 25),
+                          const UserInfo(
                             icon: Icons.person_rounded,
                             title: 'fabianmiguel@gmail.com',
                           ),
-                          SizedBox(height: 15),
-                          UserInfo(
+                          const SizedBox(height: 15),
+                          const UserInfo(
                             icon: Icons.calendar_month_rounded,
                             title: 'January 1, 2000',
                           ),
-                          SizedBox(height: 15),
-                          UserInfo(
+                          const SizedBox(height: 15),
+                          const UserInfo(
                             icon: Icons.phone_android_rounded,
                             title: '0323495123',
                           ),
-                          SizedBox(height: 15),
-                          UserInfo(
+                          const SizedBox(height: 15),
+                          const UserInfo(
                             icon: Icons.location_on_rounded,
                             title: 'Cebu City',
                           ),
-                          SizedBox(height: 35),
+                          const SizedBox(height: 35),
                           Row(
-                            children: [
+                            children: const [
                               Icon(
                                 Icons.card_membership_rounded,
                                 size: 24,
@@ -122,18 +122,18 @@ class UserProfile extends StatelessWidget {
                         alignment: Alignment.center,
                         child: Column(
                           children: [
-                            SizedBox(height: 50),
+                            const SizedBox(height: 50),
                             MainButton(
                               onPressed: () {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => Wallet()),
+                                      builder: (context) => const Wallet()),
                                 );
                               },
                               buttonText: 'Wallet',
                             ),
-                            SizedBox(height: 150),
+                            const SizedBox(height: 150),
                             MainButton(
                               onPressed: () {
                                 showDialog(

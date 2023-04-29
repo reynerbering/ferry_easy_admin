@@ -90,7 +90,7 @@ class AnnouncementCard extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 35.0),
+            const SizedBox(height: 35.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
@@ -133,7 +133,7 @@ class AnnouncementCard extends StatelessWidget {
                   },
                   buttonText: 'Cancel',
                 ),
-                SizedBox(width: 20.0),
+                const SizedBox(width: 20.0),
                 MainButton(
                   onPressed: () {
                     showDialog(
@@ -206,7 +206,7 @@ class AnnouncementCard extends StatelessWidget {
                   },
                   buttonText: 'Publish',
                 ),
-                SizedBox(width: 60),
+                const SizedBox(width: 60),
               ],
             ),
           ],

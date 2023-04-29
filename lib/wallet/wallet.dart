@@ -17,9 +17,9 @@ class Wallet extends StatelessWidget {
         centerTitle: true,
         backgroundColor: kcPrimaryColor,
       ),
-      drawer: AdminDrawer(),
+      drawer: const AdminDrawer(),
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage('assets/images/welcome-screen-waves.png'),
             fit: BoxFit.fitWidth,
@@ -28,8 +28,8 @@ class Wallet extends StatelessWidget {
         ),
         child: Column(
           children: [
-            SizedBox(height: 80.0),
-            WalletCard(
+            const SizedBox(height: 80.0),
+            const WalletCard(
               name: 'Fabian Miguel Canizares',
               amount: 20,
               image: CircleAvatar(
@@ -37,7 +37,7 @@ class Wallet extends StatelessWidget {
                 radius: 50,
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -56,8 +56,8 @@ class Wallet extends StatelessWidget {
                         ),
                       ],
                     ),
-                    child: TextField(
-                      decoration: const InputDecoration(
+                    child: const TextField(
+                      decoration: InputDecoration(
                         contentPadding: EdgeInsets.all(16),
                         hintText: 'Input Amount',
                         border: InputBorder.none,
@@ -65,7 +65,7 @@ class Wallet extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(width: 15),
+                const SizedBox(width: 15),
                 MainButton(
                   onPressed: () {
                     showDialog(
