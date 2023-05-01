@@ -3,12 +3,16 @@ import 'package:ferry_easy_admin/ferries/ferries.dart';
 import 'package:ferry_easy_admin/loginpage.dart';
 import 'package:ferry_easy_admin/users/users.dart';
 import 'package:ferry_easy_admin/widgets/dialog_card.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../constants.dart/colors.dart';
 
 class AdminDrawer extends StatelessWidget {
-  const AdminDrawer({Key? key});
+  FirebaseAuth auth = FirebaseAuth.instance;
+  AdminDrawer({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -34,10 +38,7 @@ class AdminDrawer extends StatelessWidget {
                           fontFamily: 'Inter', fontWeight: FontWeight.w500))),
                   hoverColor: kcHoverColor,
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const Users()),
-                    );
+                    Navigator.pushNamed(context, Users.id);
                   },
                 ),
                 const SizedBox(height: 8.0),
@@ -48,7 +49,7 @@ class AdminDrawer extends StatelessWidget {
                           fontFamily: 'Inter', fontWeight: FontWeight.w500))),
                   hoverColor: kcHoverColor,
                   onTap: () {
-                    Navigator.push(
+                    Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(builder: (context) => const Ferries()),
                     );
@@ -62,11 +63,7 @@ class AdminDrawer extends StatelessWidget {
                           fontFamily: 'Inter', fontWeight: FontWeight.w500))),
                   hoverColor: kcHoverColor,
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const Announcement()),
-                    );
+                    Navigator.pushNamed(context, Announcement.id);
                   },
                 ),
                 const SizedBox(height: 8.0),
@@ -88,11 +85,12 @@ class AdminDrawer extends StatelessWidget {
                             Navigator.pop(context);
                             Navigator.pop(context); // Close the dialog
                           },
-                          onButtonPressed2: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const LoginPage()),
+                          onButtonPressed2: () async {
+                            await auth.signOut().then(
+                              (value) {
+                                Navigator.pushNamedAndRemoveUntil(
+                                    context, LoginPage.id, (route) => false);
+                              },
                             );
                           },
                           buttonText1: 'No, Cancel',

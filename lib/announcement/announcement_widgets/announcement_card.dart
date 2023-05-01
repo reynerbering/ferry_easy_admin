@@ -43,7 +43,7 @@ class AnnouncementCard extends StatelessWidget {
                         color: kcPrimaryColor)),
               ),
             ),
-            const SizedBox(height: 20.0),
+            const SizedBox(height: 40.0),
             Container(
               width: 850.0,
               height: 60.0,
@@ -97,46 +97,6 @@ class AnnouncementCard extends StatelessWidget {
                 MainButton(
                   onPressed: () {
                     showDialog(
-                        context: context,
-                        builder: (context) => AlertDialog(
-                            backgroundColor: Colors.transparent,
-                            content: DialogCard(
-                              icon: Icons.question_mark_rounded,
-                              text:
-                                  'Do you want to save the announcement to drafts?',
-                              onButtonPressed1: () {
-                                Navigator.pop(context);
-                              },
-                              onButtonPressed2: () {
-                                showDialog(
-                                  context: context,
-                                  builder: (context) => AlertDialog(
-                                    backgroundColor: Colors.transparent,
-                                    content: ConfirmationCard(
-                                      icon: Icons.check_circle_outline_rounded,
-                                      text:
-                                          'The announcement has been saved to drafts',
-                                      onButtonPressed: () {
-                                        Navigator.pop(
-                                            context); // Close the nested dialog
-                                        Navigator.pop(
-                                            context); // Close the outer dialog
-                                      },
-                                      buttonText: 'Got it',
-                                    ),
-                                  ),
-                                );
-                              },
-                              buttonText1: 'No, Cancel',
-                              buttonText2: 'Yes, Save',
-                            )));
-                  },
-                  buttonText: 'Cancel',
-                ),
-                const SizedBox(width: 20.0),
-                MainButton(
-                  onPressed: () {
-                    showDialog(
                       context: context,
                       builder: (context) => AlertDialog(
                         backgroundColor: Colors.transparent,
@@ -144,43 +104,7 @@ class AnnouncementCard extends StatelessWidget {
                           icon: Icons.warning_rounded,
                           text:
                               'Are you sure you want to publish this announcement?',
-                          onButtonPressed1: () {
-                            showDialog(
-                                context: context,
-                                builder: (context) => AlertDialog(
-                                    backgroundColor: Colors.transparent,
-                                    content: DialogCard(
-                                      icon: Icons.question_mark_rounded,
-                                      text:
-                                          'Do you want to save the announcement to drafts?',
-                                      onButtonPressed1: () {
-                                        Navigator.pop(context);
-                                        Navigator.pop(context);
-                                      },
-                                      onButtonPressed2: () {
-                                        showDialog(
-                                          context: context,
-                                          builder: (context) => AlertDialog(
-                                            backgroundColor: Colors.transparent,
-                                            content: ConfirmationCard(
-                                              icon: Icons
-                                                  .check_circle_outline_rounded,
-                                              text:
-                                                  'The announcement has been saved to drafts',
-                                              onButtonPressed: () {
-                                                Navigator.pop(context);
-                                                Navigator.pop(context);
-                                                Navigator.pop(context);
-                                              },
-                                              buttonText: 'Got it',
-                                            ),
-                                          ),
-                                        );
-                                      },
-                                      buttonText1: 'No, Cancel',
-                                      buttonText2: 'Yes, Save',
-                                    )));
-                          },
+                          onButtonPressed1: () {},
                           onButtonPressed2: () {
                             showDialog(
                               context: context,

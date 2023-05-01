@@ -1,4 +1,4 @@
-import 'package:ferry_easy_admin/widgets/confirmation_card.dart';
+import 'package:ferry_easy_admin/services/announcement_service.dart';
 import 'package:ferry_easy_admin/widgets/dialog_card.dart';
 import 'package:flutter/material.dart';
 
@@ -9,6 +9,7 @@ class AnnouncementInfo extends StatefulWidget {
   final String datePublished;
   final String status;
   final VoidCallback? onTap;
+  final String announcementId;
 
   const AnnouncementInfo({
     super.key,
@@ -16,13 +17,14 @@ class AnnouncementInfo extends StatefulWidget {
     required this.datePublished,
     required this.status,
     required this.onTap,
+    required this.announcementId,
   });
 
   @override
-  _AnnouncementInfoState createState() => _AnnouncementInfoState();
+  AnnouncementInfoState createState() => AnnouncementInfoState();
 }
 
-class _AnnouncementInfoState extends State<AnnouncementInfo> {
+class AnnouncementInfoState extends State<AnnouncementInfo> {
   bool _isHovering = false;
 
   void _onEnter(PointerEvent details) {
@@ -119,19 +121,6 @@ class _AnnouncementInfoState extends State<AnnouncementInfo> {
               ),
               InkWell(
                 onTap: () {
-                  // Handle click on column 4
-                },
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 15),
-                  child:
-                      Icon(Icons.border_color_rounded, color: _getTextColor()),
-                ),
-              ),
-              const SizedBox(
-                width: 20,
-              ),
-              InkWell(
-                onTap: () {
                   showDialog(
                     context: context,
                     builder: (context) => AlertDialog(
@@ -143,22 +132,32 @@ class _AnnouncementInfoState extends State<AnnouncementInfo> {
                         onButtonPressed1: () {
                           Navigator.pop(context);
                         },
-                        onButtonPressed2: () {
-                          showDialog(
-                            context: context,
-                            builder: (context) => AlertDialog(
-                              backgroundColor: Colors.transparent,
-                              content: ConfirmationCard(
-                                icon: Icons.delete_rounded,
-                                text: 'The announcement has been deleted',
-                                onButtonPressed: () {
-                                  Navigator.pop(context);
-                                  Navigator.pop(context);
-                                },
-                                buttonText: 'Got it',
-                              ),
-                            ),
-                          );
+                        onButtonPressed2: () async {
+                          try {
+                            await AnnouncementService.delete(
+                                announcementId: widget.announcementId);
+                            if (context.mounted) {
+                              Navigator.pop(context);
+                              // Show a success message
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content:
+                                      Text('Announcement deleted successfully'),
+                                  duration: Duration(seconds: 2),
+                                ),
+                              );
+                            }
+                          } catch (e) {
+                            // Show an error message
+                            if (context.mounted) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content: Text('Error deleting announcement'),
+                                  duration: Duration(seconds: 2),
+                                ),
+                              );
+                            }
+                          }
                         },
                         buttonText1: 'No, Cancel',
                         buttonText2: 'Yes, Proceed',

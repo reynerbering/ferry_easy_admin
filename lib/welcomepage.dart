@@ -15,7 +15,7 @@ class _WelcomePageState extends State<WelcomePage> {
     Future.delayed(const Duration(seconds: 10), () {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => const LoginPage()),
+        MaterialPageRoute(builder: (context) => LoginPage()),
       );
     });
   }

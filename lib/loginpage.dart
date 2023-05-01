@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'admindashboard.dart';
@@ -5,6 +6,7 @@ import 'constants.dart/colors.dart';
 // Import the home page
 
 class LoginPage extends StatefulWidget {
+  static const id = 'login_page';
   const LoginPage({Key? key}) : super(key: key);
 
   @override
@@ -12,6 +14,9 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final _email = TextEditingController();
+  final _password = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,11 +71,12 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
               const SizedBox(height: 250.0),
-              const SizedBox(
+              SizedBox(
                 width: 700,
                 height: 49,
-                child: TextField(
-                  decoration: InputDecoration(
+                child: TextFormField(
+                  controller: _email,
+                  decoration: const InputDecoration(
                     prefixIcon: Icon(Icons.person), // User icon
                     hintText: 'Username', // Placeholder text
                   ),
@@ -79,26 +85,44 @@ class _LoginPageState extends State<LoginPage> {
               const SizedBox(height: 20.0),
               Column(
                 children: [
-                  const SizedBox(
+                  SizedBox(
                     width: 700,
                     height: 49,
-                    child: TextField(
+                    child: TextFormField(
+                      controller: _password,
                       obscureText: true, // Password field
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                           prefixIcon: Icon(Icons.lock), // Lock icon
                           hintText: 'Password'),
                     ),
                   ),
                   const SizedBox(height: 50.0),
                   ElevatedButton(
-                    onPressed: () {
-                      // Handle login button press
-                      // Navigate to home page when login button is pressed
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const AdminDashboard()),
-                      );
+                    onPressed: () async {
+                      try {
+                        await _auth
+                            .signInWithEmailAndPassword(
+                                email: _email.text.trim(),
+                                password: _password.text.trim())
+                            .then((value) {
+                          Navigator.pushReplacementNamed(
+                              context, AdminDashboard.id);
+                        });
+                      } catch (error) {
+                        var snackBar = SnackBar(
+                            backgroundColor: Colors.red,
+                            duration: const Duration(milliseconds: 2000),
+                            content: Text(
+                              error.toString(),
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(
+                                  color: Colors.white,
+                                  fontFamily: 'Inter',
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w700),
+                            ));
+                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      }
                     },
                     style: ElevatedButton.styleFrom(
                         backgroundColor: kcPrimaryColor,

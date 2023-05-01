@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'constants.dart/colors.dart';
 
 class MainButton extends StatefulWidget {
-  final VoidCallback onPressed;
+  final void Function()? onPressed;
   final String buttonText;
 
   const MainButton({

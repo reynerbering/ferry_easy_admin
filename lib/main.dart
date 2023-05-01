@@ -1,26 +1,34 @@
-import 'package:ferry_easy_admin/admindashboard.dart';
-import 'package:ferry_easy_admin/announcement/announcement.dart';
-import 'package:ferry_easy_admin/ferries/ferries.dart';
-import 'package:ferry_easy_admin/users/users.dart';
+import 'package:ferry_easy_admin/loginpage.dart';
+import 'package:ferry_easy_admin/route.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MyApp());
+import 'firebase_options.dart';
+
+Future<void> main() async {
+  // Initialize Firebase before running the app
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  runApp(MyApp(
+    appRouter: AppRouter(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final AppRouter appRouter;
+
+  const MyApp({super.key, required this.appRouter});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        routes: {
-          '/users': (context) => const Users(),
-          '/ferries': (context) => const Ferries(),
-          '/announcement': (context) => const Announcement(),
-        },
-        debugShowCheckedModeBanner: false,
-        title: 'admin',
-        home: const AdminDashboard());
+      debugShowCheckedModeBanner: false,
+      title: 'admin',
+      home: const LoginPage(),
+      onGenerateRoute: appRouter.onGenerateRoute,
+    );
   }
 }

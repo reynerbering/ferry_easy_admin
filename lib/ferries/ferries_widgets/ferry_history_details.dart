@@ -28,11 +28,7 @@ class _FerryHistoryDetailsState extends State<FerryHistoryDetails> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => const FerryPassengerHistory()),
-        );
+        Navigator.pushNamed(context, FerryPassengerHistory.id);
       },
       onHover: (isHovered) {
         setState(() {

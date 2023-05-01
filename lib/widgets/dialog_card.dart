@@ -6,8 +6,8 @@ import '../constants.dart/colors.dart';
 class DialogCard extends StatefulWidget {
   final IconData icon;
   final String text;
-  final VoidCallback onButtonPressed1;
-  final VoidCallback onButtonPressed2;
+  final void Function()? onButtonPressed1;
+  final void Function()? onButtonPressed2;
   final String buttonText1;
   final String buttonText2;
 

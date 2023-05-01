@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import '../constants.dart/colors.dart';
 
 class Ferries extends StatelessWidget {
+  static const id = 'ferries';
   const Ferries({super.key});
 
   @override
@@ -15,7 +16,7 @@ class Ferries extends StatelessWidget {
           centerTitle: true,
           backgroundColor: kcPrimaryColor,
         ),
-        drawer: const AdminDrawer(),
+        drawer: AdminDrawer(),
         body: Container(
           decoration: const BoxDecoration(
             image: DecorationImage(
@@ -35,11 +36,7 @@ class Ferries extends StatelessWidget {
                         title: 'MV PAZ',
                         icon: Icons.directions_ferry_rounded,
                         onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const FerryHistory()),
-                          );
+                          Navigator.pushNamed(context, FerryHistory.id);
                         }),
                     const SizedBox(width: 50),
                     FerryCard(

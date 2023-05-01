@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ferry_easy_admin/models/user_model.dart';
 import 'package:ferry_easy_admin/users/user_profile.dart';
 import 'package:ferry_easy_admin/widgets/admin_drawer.dart';
 import 'package:flutter/material.dart';
@@ -5,7 +7,13 @@ import 'package:flutter/material.dart';
 import '../constants.dart/colors.dart';
 
 class Users extends StatelessWidget {
-  const Users({Key? key});
+  static const id = 'users';
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  TextEditingController queryController = TextEditingController();
+
+  Users({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +23,7 @@ class Users extends StatelessWidget {
         centerTitle: true,
         backgroundColor: kcPrimaryColor,
       ),
-      drawer: const AdminDrawer(),
+      drawer: AdminDrawer(),
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
@@ -48,8 +56,9 @@ class Users extends StatelessWidget {
                             ),
                           ],
                         ),
-                        child: const TextField(
-                          decoration: InputDecoration(
+                        child: TextFormField(
+                          controller: queryController,
+                          decoration: const InputDecoration(
                             contentPadding: EdgeInsets.all(16),
                             hintText: 'Search User',
                             border: InputBorder.none,
@@ -62,12 +71,48 @@ class Users extends StatelessWidget {
                       width: 50,
                       height: 50,
                       child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const UserProfile()),
-                          );
+                        onPressed: () async {
+                          try {
+                            final QuerySnapshot result = await _firestore
+                                .collection('Users')
+                                .where('email',
+                                    isEqualTo: queryController.text.toString())
+                                .limit(1)
+                                .get();
+
+                            if (result.docs.isNotEmpty && context.mounted) {
+                              final rawData = result.docs[0].data();
+                              final docReference = result.docs[0].reference;
+                              final userData = UserModel.fromMap(
+                                  rawData as Map<String, dynamic>,
+                                  docReference);
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => UserProfile(
+                                    userData: userData,
+                                  ),
+                                ),
+                              );
+                            } else {
+                              throw Exception("User not found!");
+                            }
+                          } catch (error) {
+                            var snackBar = SnackBar(
+                                backgroundColor: Colors.red,
+                                duration: const Duration(milliseconds: 2000),
+                                content: Text(
+                                  error.toString(),
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(
+                                      color: Colors.white,
+                                      fontFamily: 'Inter',
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w700),
+                                ));
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(snackBar);
+                          }
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: kcPrimaryColor,

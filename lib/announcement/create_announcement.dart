@@ -1,16 +1,24 @@
+import 'package:ferry_easy_admin/admindashboard.dart';
 import 'package:ferry_easy_admin/mainbutton.dart';
+import 'package:ferry_easy_admin/services/announcement_service.dart';
 import 'package:ferry_easy_admin/widgets/admin_drawer.dart';
-import 'package:ferry_easy_admin/widgets/confirmation_card.dart';
 import 'package:ferry_easy_admin/widgets/dialog_card.dart';
 import 'package:flutter/material.dart';
+import 'package:uuid/uuid.dart';
 
 import '../constants.dart/colors.dart';
+import '../models/announcement_model.dart';
+import 'announcement.dart';
 
 class CreateAnnouncement extends StatelessWidget {
+  static const id = 'create_announcement';
   const CreateAnnouncement({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController title = TextEditingController();
+    TextEditingController message = TextEditingController();
+
     return Scaffold(
         appBar: AppBar(
           title: const Text(
@@ -20,7 +28,7 @@ class CreateAnnouncement extends StatelessWidget {
           centerTitle: true,
           backgroundColor: kcPrimaryColor,
         ),
-        drawer: const AdminDrawer(),
+        drawer: AdminDrawer(),
         body: Container(
           decoration: const BoxDecoration(
             image: DecorationImage(
@@ -52,36 +60,13 @@ class CreateAnnouncement extends StatelessWidget {
                         width: 1.0,
                       ),
                     ),
-                    child: const TextField(
-                      decoration: InputDecoration(
+                    child: TextFormField(
+                      controller: title,
+                      decoration: const InputDecoration(
                           contentPadding:
                               EdgeInsets.symmetric(horizontal: 20.0),
                           border: InputBorder.none,
                           hintText: 'Title',
-                          hintStyle: TextStyle(
-                              fontFamily: 'Inter',
-                              fontWeight: FontWeight.w500,
-                              color: kcPrimaryColor)),
-                    ),
-                  ),
-                  const SizedBox(height: 20.0),
-                  Container(
-                    width: 850.0,
-                    height: 60.0,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10.0),
-                      border: Border.all(
-                        color: kcPrimaryColor.withOpacity(0.5),
-                        width: 1.0,
-                      ),
-                    ),
-                    child: const TextField(
-                      decoration: InputDecoration(
-                          contentPadding:
-                              EdgeInsets.symmetric(horizontal: 20.0),
-                          border: InputBorder.none,
-                          hintText: 'Date',
                           hintStyle: TextStyle(
                               fontFamily: 'Inter',
                               fontWeight: FontWeight.w500,
@@ -100,8 +85,9 @@ class CreateAnnouncement extends StatelessWidget {
                         width: 1.0,
                       ),
                     ),
-                    child: const TextField(
-                      decoration: InputDecoration(
+                    child: TextFormField(
+                      controller: message,
+                      decoration: const InputDecoration(
                         contentPadding: EdgeInsets.symmetric(horizontal: 20.0),
                         border: InputBorder.none,
                         hintText: 'Description',
@@ -137,23 +123,19 @@ class CreateAnnouncement extends StatelessWidget {
                                   Navigator.pop(context);
                                 },
                                 onButtonPressed2: () {
-                                  showDialog(
-                                    context: context,
-                                    builder: (context) => AlertDialog(
-                                      backgroundColor: Colors.transparent,
-                                      content: ConfirmationCard(
-                                        icon:
-                                            Icons.check_circle_outline_rounded,
-                                        text:
-                                            'The announcement has been published',
-                                        onButtonPressed: () {
-                                          Navigator.pop(context);
-                                          Navigator.pop(context);
-                                        },
-                                        buttonText: 'Got it',
-                                      ),
-                                    ),
+                                  var announcementId = Uuid().v4().toString();
+                                  AnnouncementModel announcement =
+                                      AnnouncementModel(
+                                    title: title.text.trim(),
+                                    message: message.text.trim(),
+                                    dateCreated: DateTime.now(),
+                                    announcementId: announcementId,
                                   );
+                                  AnnouncementService.create(
+                                      announcementId: announcementId,
+                                      announcement: announcement);
+                                  Navigator.pushNamedAndRemoveUntil(context,
+                                      Announcement.id, (route) => false);
                                 },
                                 buttonText1: 'No, Cancel',
                                 buttonText2: 'Yes, Publish',

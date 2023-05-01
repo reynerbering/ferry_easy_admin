@@ -2,16 +2,17 @@ import 'package:flutter/material.dart';
 import '../constants.dart/colors.dart';
 
 class WalletCard extends StatelessWidget {
-  final Widget image;
   final String name;
+  final bool isVerified;
+  final Widget? child;
   final int amount;
 
-  const WalletCard({
-    super.key,
-    required this.image,
-    required this.name,
-    required this.amount,
-  });
+  const WalletCard(
+      {super.key,
+      required this.name,
+      required this.amount,
+      this.child,
+      required this.isVerified});
 
   @override
   Widget build(BuildContext context) {
@@ -60,21 +61,33 @@ class WalletCard extends StatelessWidget {
                           fontWeight: FontWeight.w400,
                           color: kcDarkGray)),
                   const SizedBox(height: 10),
-                  Text(name,
-                      style: const TextStyle(
-                          fontFamily: 'Inter',
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: kcPrimaryColor)),
+                  Row(
+                    children: [
+                      Text(
+                        name,
+                        style: const TextStyle(
+                            fontFamily: 'Inter',
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: kcPrimaryColor),
+                      ),
+                      isVerified
+                          ? const Icon(
+                              Icons.verified,
+                              color: kcPrimaryColor,
+                            )
+                          : const SizedBox.shrink(),
+                    ],
+                  ),
                 ],
               ),
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.all(40),
+          Padding(
+            padding: const EdgeInsets.all(40),
             child: CircleAvatar(
               radius: 50,
-              backgroundImage: AssetImage('assets/images/titikmankid.jpg'),
+              child: child,
             ),
           ),
         ],
