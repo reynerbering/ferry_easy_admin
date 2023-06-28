@@ -22,10 +22,10 @@ class DialogCard extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _DialogCardState createState() => _DialogCardState();
+  DialogCardState createState() => DialogCardState();
 }
 
-class _DialogCardState extends State<DialogCard> {
+class DialogCardState extends State<DialogCard> {
   bool isHovering = false;
 
   @override

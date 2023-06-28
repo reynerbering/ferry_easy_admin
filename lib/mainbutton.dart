@@ -13,10 +13,10 @@ class MainButton extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _MainButtonState createState() => _MainButtonState();
+  MainButtonState createState() => MainButtonState();
 }
 
-class _MainButtonState extends State<MainButton> {
+class MainButtonState extends State<MainButton> {
   bool isHovering = false;
 
   @override

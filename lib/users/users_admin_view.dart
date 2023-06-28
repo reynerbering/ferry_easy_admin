@@ -1,17 +1,18 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ferry_easy_admin/models/user_model.dart';
-import 'package:ferry_easy_admin/users/user_profile.dart';
+import 'package:ferry_easy_admin/users/user_profile_admin_view.dart';
+import 'package:ferry_easy_admin/users/users_scrollable_list.dart';
 import 'package:ferry_easy_admin/widgets/admin_drawer.dart';
 import 'package:flutter/material.dart';
 
 import '../constants.dart/colors.dart';
 
-class Users extends StatelessWidget {
-  static const id = 'users';
+class UsersAdminView extends StatelessWidget {
+  static const id = 'users_admin_view';
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   TextEditingController queryController = TextEditingController();
 
-  Users({
+  UsersAdminView({
     super.key,
   });
 
@@ -89,7 +90,7 @@ class Users extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => UserProfile(
+                                  builder: (context) => UserProfileAdminView(
                                     userData: userData,
                                   ),
                                 ),
@@ -124,6 +125,47 @@ class Users extends StatelessWidget {
                       ),
                     ),
                   ],
+                ),
+              ),
+              const SizedBox(height: 20),
+              SizedBox(
+                width: 1000,
+                height: 600.0,
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 30),
+                      Row(
+                        children: const [
+                          SizedBox(width: 90),
+                          Text('Full Name',
+                              style: TextStyle(
+                                  fontFamily: 'Inter',
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 14,
+                                  color: kcDarkGray)),
+                          SizedBox(width: 325),
+                          Text('Email',
+                              style: TextStyle(
+                                  fontFamily: 'Inter',
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 14,
+                                  color: kcDarkGray)),
+                          SizedBox(width: 250),
+                          Text('Address',
+                              style: TextStyle(
+                                  fontFamily: 'Inter',
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 14,
+                                  color: kcDarkGray)),
+                          SizedBox(width: 70),
+                        ],
+                      ),
+                      const SizedBox(height: 20),
+                      const UsersList(),
+                      const SizedBox(height: 20),
+                    ],
+                  ),
                 ),
               ),
             ],

@@ -1,4 +1,3 @@
-import 'package:ferry_easy_admin/admindashboard.dart';
 import 'package:ferry_easy_admin/mainbutton.dart';
 import 'package:ferry_easy_admin/services/announcement_service.dart';
 import 'package:ferry_easy_admin/widgets/admin_drawer.dart';
@@ -123,7 +122,8 @@ class CreateAnnouncement extends StatelessWidget {
                                   Navigator.pop(context);
                                 },
                                 onButtonPressed2: () {
-                                  var announcementId = Uuid().v4().toString();
+                                  var announcementId =
+                                      const Uuid().v4().toString();
                                   AnnouncementModel announcement =
                                       AnnouncementModel(
                                     title: title.text.trim(),

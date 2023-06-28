@@ -40,7 +40,7 @@ class AnnouncementList extends StatelessWidget {
                   final formattedDate =
                       DateFormat('MM-dd-yyyy').format(dateCreated.toDate());
                   return Container(
-                    padding: const EdgeInsets.all(15),
+                    padding: const EdgeInsets.all(10),
                     margin: const EdgeInsets.symmetric(horizontal: 15),
                     child: AnnouncementInfo(
                       title: data['title'],

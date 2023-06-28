@@ -5,17 +5,17 @@ class WelcomePage extends StatefulWidget {
   const WelcomePage({Key? key}) : super(key: key);
 
   @override
-  _WelcomePageState createState() => _WelcomePageState();
+  WelcomePageState createState() => WelcomePageState();
 }
 
-class _WelcomePageState extends State<WelcomePage> {
+class WelcomePageState extends State<WelcomePage> {
   @override
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 10), () {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => LoginPage()),
+        MaterialPageRoute(builder: (context) => const LoginPage()),
       );
     });
   }

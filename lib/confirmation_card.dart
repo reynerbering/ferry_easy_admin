@@ -18,10 +18,10 @@ class ConfirmationCard extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _ConfirmationCardState createState() => _ConfirmationCardState();
+  ConfirmationCardState createState() => ConfirmationCardState();
 }
 
-class _ConfirmationCardState extends State<ConfirmationCard> {
+class ConfirmationCardState extends State<ConfirmationCard> {
   bool isHovering = false;
 
   @override

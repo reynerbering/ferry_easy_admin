@@ -11,10 +11,10 @@ class FerryCard extends StatefulWidget {
       {super.key, required this.title, required this.icon, this.onTap});
 
   @override
-  _FerryCardState createState() => _FerryCardState();
+  FerryCardState createState() => FerryCardState();
 }
 
-class _FerryCardState extends State<FerryCard> {
+class FerryCardState extends State<FerryCard> {
   bool _isHovering = false;
 
   @override

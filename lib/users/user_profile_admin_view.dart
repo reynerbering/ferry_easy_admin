@@ -2,8 +2,7 @@ import 'package:ferry_easy_admin/constants.dart/colors.dart';
 import 'package:ferry_easy_admin/mainbutton.dart';
 import 'package:ferry_easy_admin/services/verification_service.dart';
 import 'package:ferry_easy_admin/users/user_widgets/user_info.dart';
-import 'package:ferry_easy_admin/users/users.dart';
-import 'package:ferry_easy_admin/wallet/wallet.dart';
+import 'package:ferry_easy_admin/users/users_admin_view.dart';
 import 'package:ferry_easy_admin/widgets/admin_drawer.dart';
 import 'package:ferry_easy_admin/widgets/dialog_card.dart';
 import 'package:ferry_easy_admin/widgets/id_container.dart';
@@ -14,11 +13,11 @@ import '../models/user_model.dart';
 import '../widgets/avatar.dart';
 import '../widgets/back_button.dart';
 
-class UserProfile extends StatelessWidget {
-  static const id = 'user_profile';
+class UserProfileAdminView extends StatelessWidget {
+  static const id = 'user_profile_admin_view';
   final UserModel userData;
 
-  const UserProfile({
+  const UserProfileAdminView({
     super.key,
     required this.userData,
   });
@@ -163,53 +162,37 @@ class UserProfile extends StatelessWidget {
                           child: Column(
                             children: [
                               const SizedBox(height: 50),
+                              const SizedBox(height: 150),
                               MainButton(
                                 onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => Wallet(
-                                              userData: userData,
-                                            )),
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) => AlertDialog(
+                                      backgroundColor: Colors.transparent,
+                                      content: DialogCard(
+                                        icon: Icons.question_mark_rounded,
+                                        text:
+                                            'Are you sure you want to grant discounted tickets to user?',
+                                        onButtonPressed1: () {
+                                          Navigator.pop(
+                                              context); // Close the dialog
+                                        },
+                                        onButtonPressed2: () {
+                                          VerificationService.markAsVerified(
+                                              uid: userData.uid);
+                                          Navigator.pushNamedAndRemoveUntil(
+                                              context,
+                                              UsersAdminView.id,
+                                              (route) => false);
+                                        },
+                                        buttonText1: 'No, Cancel',
+                                        buttonText2: 'Yes, Verify',
+                                      ),
+                                    ),
                                   );
                                 },
-                                buttonText: 'Wallet',
+                                buttonText: 'Verify',
                               ),
-                              const SizedBox(height: 150),
-                              userData.isVerified
-                                  ? const SizedBox.shrink()
-                                  : MainButton(
-                                      onPressed: () {
-                                        showDialog(
-                                          context: context,
-                                          builder: (context) => AlertDialog(
-                                            backgroundColor: Colors.transparent,
-                                            content: DialogCard(
-                                              icon: Icons.question_mark_rounded,
-                                              text:
-                                                  'Are you sure you want to grant discounted tickets to user?',
-                                              onButtonPressed1: () {
-                                                Navigator.pop(
-                                                    context); // Close the dialog
-                                              },
-                                              onButtonPressed2: () {
-                                                VerificationService
-                                                    .markAsVerified(
-                                                        uid: userData.uid);
-                                                Navigator
-                                                    .pushNamedAndRemoveUntil(
-                                                        context,
-                                                        Users.id,
-                                                        (route) => false);
-                                              },
-                                              buttonText1: 'No, Cancel',
-                                              buttonText2: 'Yes, Verify',
-                                            ),
-                                          ),
-                                        );
-                                      },
-                                      buttonText: 'Verify',
-                                    ),
                             ],
                           ),
                         ),

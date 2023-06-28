@@ -1,10 +1,13 @@
 import 'package:ferry_easy_admin/widgets/admin_drawer.dart';
+import 'package:ferry_easy_admin/widgets/cashier_drawer.dart';
 import 'package:flutter/material.dart';
 import 'constants.dart/colors.dart';
+import 'models/user_model.dart';
 
 class AdminDashboard extends StatefulWidget {
+  final UserModel user;
   static const id = 'admin_dashboard';
-  const AdminDashboard({super.key});
+  const AdminDashboard({super.key, required this.user});
 
   @override
   State<AdminDashboard> createState() => _AdminDashboardState();
@@ -20,12 +23,12 @@ class _AdminDashboardState extends State<AdminDashboard> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Welcome, Administrator!',
-            style: (TextStyle(fontFamily: 'Inter'))),
+        title: const Text('Welcome!', style: (TextStyle(fontFamily: 'Inter'))),
         centerTitle: true,
         backgroundColor: kcPrimaryColor,
       ),
-      drawer: AdminDrawer(),
+      drawer:
+          widget.user.accountType == 'Admin' ? AdminDrawer() : CashierDrawer(),
       body: Center(
         child: Container(
           margin: const EdgeInsets.all(25),

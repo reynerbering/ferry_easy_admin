@@ -1,8 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'admindashboard.dart';
 import 'constants.dart/colors.dart';
+import 'models/user_model.dart';
 // Import the home page
 
 class LoginPage extends StatefulWidget {
@@ -10,11 +12,12 @@ class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
   @override
-  _LoginPageState createState() => _LoginPageState();
+  LoginPageState createState() => LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class LoginPageState extends State<LoginPage> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final _email = TextEditingController();
   final _password = TextEditingController();
   @override
@@ -27,7 +30,7 @@ class _LoginPageState extends State<LoginPage> {
           color: kcPrimaryColor, // Background color for the left column
           child: Column(
             children: [
-              const SizedBox(height: 50.0),
+              const SizedBox(height: 35.0),
               Center(
                 child: Image.asset(
                   'assets/logos/ferryeasy-wordmark-white.png',
@@ -96,17 +99,33 @@ class _LoginPageState extends State<LoginPage> {
                           hintText: 'Password'),
                     ),
                   ),
-                  const SizedBox(height: 50.0),
+                  const SizedBox(height: 30.0),
                   ElevatedButton(
                     onPressed: () async {
                       try {
+                        final QuerySnapshot result = await _firestore
+                            .collection('Users')
+                            .where('email', isEqualTo: _email.text.toString())
+                            .limit(1)
+                            .get();
+
+                        final rawData = result.docs[0].data();
+                        final docReference = result.docs[0].reference;
+                        final userData = UserModel.fromMap(
+                            rawData as Map<String, dynamic>, docReference);
                         await _auth
                             .signInWithEmailAndPassword(
                                 email: _email.text.trim(),
                                 password: _password.text.trim())
                             .then((value) {
-                          Navigator.pushReplacementNamed(
-                              context, AdminDashboard.id);
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => AdminDashboard(
+                                user: userData,
+                              ),
+                            ),
+                          );
                         });
                       } catch (error) {
                         var snackBar = SnackBar(

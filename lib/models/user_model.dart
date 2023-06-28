@@ -8,6 +8,7 @@ class UserModel {
   final String username;
   final String profileImg;
   final String contactNum;
+  final String accountType;
   final Map<String, dynamic> address;
   final DateTime birthDate;
   final int wallet;
@@ -19,6 +20,7 @@ class UserModel {
     required this.firstName,
     required this.lastName,
     required this.email,
+    required this.accountType,
     required this.username,
     required this.address,
     required this.birthDate,
@@ -36,6 +38,7 @@ class UserModel {
       'firstName': firstName,
       'lastName': lastName,
       'email': email,
+      'accountType': accountType,
       'username': username,
       'address': address,
       'birthDate': Timestamp.fromDate(birthDate),
@@ -55,6 +58,7 @@ class UserModel {
       firstName: map['firstName'],
       lastName: map['lastName'],
       email: map['email'],
+      accountType: map['accountType'],
       username: map['username'],
       address: map['address'],
       birthDate: (map['birthDate'] as Timestamp).toDate(),
@@ -71,6 +75,7 @@ class UserModel {
         'firstName': firstName,
         'lastName': lastName,
         'email': email,
+        'accountType': accountType,
         'username': username,
         'address': address,
         'birthDate': birthDate.toString(),
@@ -97,6 +102,7 @@ class UserModel {
       firstName: json['firstName'] ?? '',
       lastName: json['lastName'] ?? '',
       email: json['email'] ?? '',
+      accountType: json['accountType'] ?? '',
       username: json['username'] ?? '',
       address: json['address'] ?? {},
       birthDate: (json['birthDate'] != null)
@@ -123,4 +129,28 @@ class UserModel {
       return UserModel.fromMap(data, snapshot.reference);
     });
   }
+}
+
+Future<void> addUser(UserModel user) async {
+  final CollectionReference usersCollection =
+      FirebaseFirestore.instance.collection('Users');
+  await usersCollection.doc(user.uid.toString()).set(user.toMap());
+}
+
+Stream<UserModel?> getUser(String userId) {
+  final CollectionReference usersCollection =
+      FirebaseFirestore.instance.collection('Users');
+  final DocumentReference userDocRef = usersCollection.doc(userId);
+
+  return userDocRef.snapshots().map(
+    (docSnapshot) {
+      if (docSnapshot.exists) {
+        final Map<String, dynamic> userData =
+            docSnapshot.data() as Map<String, dynamic>;
+        return UserModel.fromMap(userData, userDocRef);
+      } else {
+        return null;
+      }
+    },
+  );
 }

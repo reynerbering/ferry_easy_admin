@@ -17,10 +17,10 @@ class FerryPassengerDetails extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _FerryHistoryDetailsState createState() => _FerryHistoryDetailsState();
+  FerryHistoryDetailsState createState() => FerryHistoryDetailsState();
 }
 
-class _FerryHistoryDetailsState extends State<FerryPassengerDetails> {
+class FerryHistoryDetailsState extends State<FerryPassengerDetails> {
   final bool _isHovered = false;
 
   @override

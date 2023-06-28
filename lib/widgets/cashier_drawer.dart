@@ -1,19 +1,15 @@
-import 'package:ferry_easy_admin/announcement/announcement.dart';
-import 'package:ferry_easy_admin/dashboard/dashboard.dart';
-import 'package:ferry_easy_admin/ferries/ferries.dart';
-import 'package:ferry_easy_admin/ferry_tracker/ferry_tracker.dart';
 import 'package:ferry_easy_admin/loginpage.dart';
-import 'package:ferry_easy_admin/users/users_admin_view.dart';
+import 'package:ferry_easy_admin/transaction/transactions_cashier.dart';
 import 'package:ferry_easy_admin/widgets/dialog_card.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../constants.dart/colors.dart';
-import '../transaction/transactions_admin.dart';
+import '../users/user_cashier_view.dart';
 
-class AdminDrawer extends StatelessWidget {
-  final FirebaseAuth auth = FirebaseAuth.instance;
-  AdminDrawer({
+class CashierDrawer extends StatelessWidget {
+  FirebaseAuth auth = FirebaseAuth.instance;
+  CashierDrawer({
     super.key,
   });
 
@@ -41,49 +37,8 @@ class AdminDrawer extends StatelessWidget {
                           fontFamily: 'Inter', fontWeight: FontWeight.w500))),
                   hoverColor: kcHoverColor,
                   onTap: () {
-                    Navigator.pushReplacementNamed(context, UsersAdminView.id);
-                  },
-                ),
-                ListTile(
-                  leading: const Icon(Icons.dashboard),
-                  title: const Text('Dashboard',
-                      style: (TextStyle(
-                          fontFamily: 'Inter', fontWeight: FontWeight.w500))),
-                  hoverColor: kcHoverColor,
-                  onTap: () {
-                    Navigator.pushReplacementNamed(context, Dashboard.id);
-                  },
-                ),
-                const SizedBox(height: 8.0),
-                ListTile(
-                  leading: const Icon(Icons.directions_boat),
-                  title: const Text('Ferries',
-                      style: (TextStyle(
-                          fontFamily: 'Inter', fontWeight: FontWeight.w500))),
-                  hoverColor: kcHoverColor,
-                  onTap: () {
-                    Navigator.pushReplacementNamed(context, Ferries.id);
-                  },
-                ),
-                ListTile(
-                  leading: const Icon(Icons.location_on),
-                  title: const Text('Active Ferries',
-                      style: (TextStyle(
-                          fontFamily: 'Inter', fontWeight: FontWeight.w500))),
-                  hoverColor: kcHoverColor,
-                  onTap: () {
-                    Navigator.pushReplacementNamed(context, FerryTracker.id);
-                  },
-                ),
-                const SizedBox(height: 8.0),
-                ListTile(
-                  leading: const Icon(Icons.announcement),
-                  title: const Text('Announcement',
-                      style: (TextStyle(
-                          fontFamily: 'Inter', fontWeight: FontWeight.w500))),
-                  hoverColor: kcHoverColor,
-                  onTap: () {
-                    Navigator.pushReplacementNamed(context, Announcement.id);
+                    Navigator.pushReplacementNamed(
+                        context, UsersCashierView.id);
                   },
                 ),
                 ListTile(
@@ -94,7 +49,7 @@ class AdminDrawer extends StatelessWidget {
                   hoverColor: kcHoverColor,
                   onTap: () {
                     Navigator.pushReplacementNamed(
-                        context, TransactionsAdmin.id);
+                        context, TransactionsCashier.id);
                   },
                 ),
                 const SizedBox(height: 8.0),
